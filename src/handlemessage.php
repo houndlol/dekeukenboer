@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-require '../vendor/autoload.php';
+// require '../vendor/autoload.php';
 
 // Check if name, email and message are given
 if ( ! empty($_POST['name']) && ! empty($_POST['email']) && ! empty($_POST['message'])) {
@@ -15,8 +15,7 @@ if ( ! empty($_POST['name']) && ! empty($_POST['email']) && ! empty($_POST['mess
 
     // When email is valid, add the message to table messages (you can find the sql in keukenboer.sql)
 
-    $mysqli = new mysqli('mysql', 'root', 'root', 'keukenboer');
-//    $mysqli = new mysqli('keukenboer.mysql.database.azure.com', 'keukenboer', 'jhu*ka!QQ23', 'keukenboer');
+    $mysqli = new mysqli('localhost', 'root', 'root', 'keukenboer');
     $sql = "INSERT INTO message(name, email, message) VALUES (?, ?, ?)";
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param("sss", $name, $email, $message);
